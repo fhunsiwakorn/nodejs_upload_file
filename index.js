@@ -8,6 +8,7 @@ const middleware = require("./middleware");
 const functions = require("./functions");
 
 const port = process.env.PORT || 1150;
+app.use(express.json(), cors());
 // Common
 const d = new Date();
 const year = d.getFullYear();
@@ -54,7 +55,6 @@ app.delete("/file/?", (req, res) => {
   res.end();
 });
 
-app.use(express.json(), cors());
 app.get("/", (req, res) => {
   res.send("Hello! Node.js");
 });

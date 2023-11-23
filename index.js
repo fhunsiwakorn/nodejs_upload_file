@@ -39,18 +39,12 @@ app.get("/file/?", (req, res) => {
   let path = req.query.f;
   const mimeType = mime.lookup(path);
   //   console.log(mimeType);
-  const extension = mimeType.split("/")[0];
+  // const extension = mimeType.split("/")[0];
   //   console.log(extension);
   let file = path;
-  if (extension === "image") {
-    fileToLoad = fs.readFileSync(file);
-    res.writeHead(200, { "Content-Type": mimeType });
-    res.end(fileToLoad, "binary");
-  } else {
-    fileToLoad = fs.readFileSync(file, "utf8");
-    res.writeHead(200, { "Content-Type": mimeType });
-    res.end(fileToLoad, "binary");
-  }
+  fileToLoad = fs.readFileSync(file);
+  res.writeHead(200, { "Content-Type": mimeType });
+  res.end(fileToLoad, "binary");
 });
 
 app.delete("/file/?", (req, res) => {
